@@ -55,7 +55,7 @@ export interface Post {
   }
 }
 
-// Changed: AboutPage type for the about-page singleton object
+// AboutPage type for the about-page singleton object
 export interface AboutPage {
   id: string
   title: string
@@ -64,6 +64,49 @@ export interface AboutPage {
     heading: string
     content?: string
     hero_image?: CosmicImage
+  }
+}
+
+// Changed: Added Collection type for ecommerce
+export interface Collection {
+  id: string
+  title: string
+  slug: string
+  metadata: {
+    name: string
+    description?: string
+    image?: CosmicImage
+  }
+}
+
+// Changed: Added Product type for ecommerce
+export interface Product {
+  id: string
+  title: string
+  slug: string
+  metadata: {
+    name: string
+    description: string
+    price: number
+    image?: CosmicImage
+    collection?: Collection | string
+    in_stock: boolean
+  }
+}
+
+// Changed: Added Review type for ecommerce
+export interface Review {
+  id: string
+  title: string
+  slug: string
+  metadata: {
+    product: Product
+    reviewer_name: string
+    rating: {
+      key: string
+      value: string
+    }
+    comment?: string
   }
 }
 

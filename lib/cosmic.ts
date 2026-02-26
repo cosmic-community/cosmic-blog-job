@@ -1,5 +1,5 @@
 import { createBucketClient } from '@cosmicjs/sdk'
-import { Post, Author, Category, AboutPage, hasStatus } from '@/types'
+import { Post, Author, Category, AboutPage, Product, Collection, Review, hasStatus } from '@/types'
 
 export const cosmic = createBucketClient({
   bucketSlug: process.env.COSMIC_BUCKET_SLUG as string,
@@ -172,5 +172,134 @@ export async function getAboutPage(): Promise<AboutPage | null> {
       return null
     }
     throw new Error('Failed to fetch about page')
+  }
+}
+
+// Changed: Added getProducts function to fetch all products
+export async function getProducts(): Promise<Product[]> {
+  try {
+    const response = await cosmic.objects
+      .find({ type: 'products' })
+      .props(['id', 'title', 'slug', 'metadata'])
+      .depth(1)
+
+    return (response.objects || []) as Product[]
+  } catch (error) {
+    if (hasStatus(error) && error.status === 404) {
+      return []
+    }
+    throw new Error('Failed to fetch products')
+  }
+}
+
+// Changed: Added getProductBySlug function
+export async function getProductBySlug(slug: string): Promise<Product | null> {
+  try {
+    const response = await cosmic.objects
+      .findOne({
+        type: 'products',
+        slug,
+      })
+      .props(['id', 'title', 'slug', 'metadata'])
+      .depth(1)
+
+    return response.object as Product
+  } catch (error) {
+    if (hasStatus(error) && error.status === 404) {
+      return null
+    }
+    throw new Error('Failed to fetch product')
+  }
+}
+
+// Changed: Added getCollections function
+export async function getCollections(): Promise<Collection[]> {
+  try {
+    const response = await cosmic.objects
+      .find({ type: 'collections' })
+      .props(['id', 'title', 'slug', 'metadata'])
+
+    return (response.objects || []) as Collection[]
+  } catch (error) {
+    if (hasStatus(error) && error.status === 404) {
+      return []
+    }
+    throw new Error('Failed to fetch collections')
+  }
+}
+
+// Changed: Added getCollectionBySlug function
+export async function getCollectionBySlug(slug: string): Promise<Collection | null> {
+  try {
+    const response = await cosmic.objects
+      .findOne({
+        type: 'collections',
+        slug,
+      })
+      .props(['id', 'title', 'slug', 'metadata'])
+
+    return response.object as Collection
+  } catch (error) {
+    if (hasStatus(error) && error.status === 404) {
+      return null
+    }
+    throw new Error('Failed to fetch collection')
+  }
+}
+
+// Changed: Added getProductsByCollectionId function
+export async function getProductsByCollectionId(collectionId: string): Promise<Product[]> {
+  try {
+    const response = await cosmic.objects
+      .find({
+        type: 'products',
+        'metadata.collection': collectionId,
+      })
+      .props(['id', 'title', 'slug', 'metadata'])
+      .depth(1)
+
+    return (response.objects || []) as Product[]
+  } catch (error) {
+    if (hasStatus(error) && error.status === 404) {
+      return []
+    }
+    throw new Error('Failed to fetch products by collection')
+  }
+}
+
+// Changed: Added getReviews function
+export async function getReviews(): Promise<Review[]> {
+  try {
+    const response = await cosmic.objects
+      .find({ type: 'reviews' })
+      .props(['id', 'title', 'slug', 'metadata'])
+      .depth(1)
+
+    return (response.objects || []) as Review[]
+  } catch (error) {
+    if (hasStatus(error) && error.status === 404) {
+      return []
+    }
+    throw new Error('Failed to fetch reviews')
+  }
+}
+
+// Changed: Added getReviewsByProductId function
+export async function getReviewsByProductId(productId: string): Promise<Review[]> {
+  try {
+    const response = await cosmic.objects
+      .find({
+        type: 'reviews',
+        'metadata.product': productId,
+      })
+      .props(['id', 'title', 'slug', 'metadata'])
+      .depth(1)
+
+    return (response.objects || []) as Review[]
+  } catch (error) {
+    if (hasStatus(error) && error.status === 404) {
+      return []
+    }
+    throw new Error('Failed to fetch reviews for product')
   }
 }
