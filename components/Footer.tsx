@@ -25,6 +25,12 @@ export default function Footer() {
                   Home
                 </Link>
               </li>
+              {/* Changed: Added About link to footer navigation */}
+              <li>
+                <Link href="/about" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
+                  About
+                </Link>
+              </li>
               <li>
                 <Link href="/categories" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
                   Categories
