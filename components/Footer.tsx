@@ -25,7 +25,18 @@ export default function Footer() {
                   Home
                 </Link>
               </li>
-              {/* Changed: Added About link to footer navigation */}
+              {/* Changed: Added Shop link to footer navigation */}
+              <li>
+                <Link href="/shop" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
+                  Shop
+                </Link>
+              </li>
+              {/* Changed: Added Collections link to footer navigation */}
+              <li>
+                <Link href="/collections" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
+                  Collections
+                </Link>
+              </li>
               <li>
                 <Link href="/about" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
                   About
@@ -82,7 +93,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Social Links - Changed: Updated to Cosmic's official social profiles */}
+          {/* Social Links */}
           <div>
             <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-3">
               Follow Us
