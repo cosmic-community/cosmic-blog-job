@@ -20,7 +20,8 @@ export default async function HomePage() {
     return dateB - dateA
   })
 
-  const featuredPost = sortedPosts[0]
+  // Changed: Added undefined check for noUncheckedIndexedAccess compatibility
+  const featuredPost = sortedPosts.length > 0 ? sortedPosts[0] : undefined
   const remainingPosts = sortedPosts.slice(1)
 
   // Show up to 3 products on homepage
@@ -75,13 +76,11 @@ export default async function HomePage() {
       )}
 
       {/* All posts when only one post exists */}
-      {sortedPosts.length === 1 && (
+      {sortedPosts.length === 1 && featuredPost && (
         <section className="container-blog pt-10 sm:pt-14 pb-16">
           <h2 className="text-2xl font-bold text-gray-900 mb-8">All Posts</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {sortedPosts.map((post) => (
-              <PostCard key={post.id} post={post} />
-            ))}
+            <PostCard key={featuredPost.id} post={featuredPost} />
           </div>
         </section>
       )}
