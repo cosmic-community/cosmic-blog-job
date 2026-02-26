@@ -1,9 +1,3 @@
-Test 2
-
-TEST 2
-
-TEST 1
-
 # Cosmic Blog
 
 ![Cosmic Blog](https://imgix.cosmicjs.com/5c91e660-12a7-11f1-87b4-a3b1ac0874fc-photo-1493976040374-85c8e12f0c0e-1772064544230.jpg?w=1200&h=300&fit=crop&auto=format,compress)
