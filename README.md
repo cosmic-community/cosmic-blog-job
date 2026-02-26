@@ -1,3 +1,6 @@
+# README.md
+Test 3
+
 # Cosmic Blog
 
 ![Cosmic Blog](https://imgix.cosmicjs.com/5c91e660-12a7-11f1-87b4-a3b1ac0874fc-photo-1493976040374-85c8e12f0c0e-1772064544230.jpg?w=1200&h=300&fit=crop&auto=format,compress)
@@ -70,72 +73,3 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) to see the blog.
 
 ### Environment Variables
-
-```
-COSMIC_BUCKET_SLUG=your-bucket-slug
-COSMIC_READ_KEY=your-read-key
-COSMIC_WRITE_KEY=your-write-key
-```
-
-## Cosmic SDK Examples
-
-### Fetching Posts with Related Data
-
-```typescript
-import { cosmic } from '@/lib/cosmic'
-
-// Fetch all posts with author and category data
-const { objects: posts } = await cosmic.objects
-  .find({ type: 'posts' })
-  .props(['id', 'title', 'slug', 'metadata'])
-  .depth(1)
-
-// Fetch a single post by slug
-const { object: post } = await cosmic.objects
-  .findOne({ type: 'posts', slug: 'my-post' })
-  .props(['id', 'title', 'slug', 'metadata', 'created_at'])
-  .depth(1)
-```
-
-### Fetching Categories and Authors
-
-```typescript
-// Get all categories
-const { objects: categories } = await cosmic.objects
-  .find({ type: 'categories' })
-  .props(['id', 'title', 'slug', 'metadata'])
-
-// Get all authors with avatars
-const { objects: authors } = await cosmic.objects
-  .find({ type: 'authors' })
-  .props(['id', 'title', 'slug', 'metadata'])
-```
-
-## Cosmic CMS Integration
-
-This blog is powered by [Cosmic](https://www.cosmicjs.com), a headless CMS that provides:
-
-- **Posts** (`posts`) — Blog articles with markdown content, featured images, linked authors, and categories
-- **Categories** (`categories`) — Content organization with names and descriptions
-- **Authors** (`authors`) — Writer profiles with names, bios, and avatar images
-
-Content is fetched server-side using the [Cosmic SDK](https://www.cosmicjs.com/docs) with `depth: 1` to resolve related objects in a single query.
-
-## Deployment
-
-### Vercel (Recommended)
-
-1. Push your code to GitHub
-2. Import the repository in [Vercel](https://vercel.com)
-3. Add your environment variables in the Vercel dashboard
-4. Deploy
-
-### Netlify
-
-1. Push your code to GitHub
-2. Import the repository in [Netlify](https://netlify.com)
-3. Set the build command to `bun run build`
-4. Add environment variables in the Netlify dashboard
-5. Deploy
-
-<!-- README_END -->
