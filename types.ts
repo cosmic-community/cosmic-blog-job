@@ -1,3 +1,9 @@
+// Cosmic file/image type
+export interface CosmicImage {
+  url: string
+  imgix_url: string
+}
+
 // Base Cosmic object interface
 export interface CosmicObject {
   id: string;
@@ -11,39 +17,54 @@ export interface CosmicObject {
 }
 
 // Author type
-export interface Author extends CosmicObject {
-  type: 'authors';
+export interface Author {
+  id: string
+  title: string
+  slug: string
+  created_at?: string
   metadata: {
-    name: string;
-    bio?: string;
-    avatar?: {
-      url: string;
-      imgix_url: string;
-    };
-  };
+    name: string
+    bio?: string
+    avatar?: CosmicImage
+  }
 }
 
 // Category type
-export interface Category extends CosmicObject {
-  type: 'categories';
+export interface Category {
+  id: string
+  title: string
+  slug: string
+  created_at?: string
   metadata: {
-    name: string;
-    description?: string;
-  };
+    name: string
+    description?: string
+  }
 }
 
 // Post type
-export interface Post extends CosmicObject {
-  type: 'posts';
+export interface Post {
+  id: string
+  title: string
+  slug: string
+  created_at?: string
   metadata: {
-    content: string;
-    featured_image?: {
-      url: string;
-      imgix_url: string;
-    };
-    author?: Author;
-    category?: Category;
-  };
+    content: string
+    featured_image?: CosmicImage
+    author?: Author
+    category?: Category
+  }
+}
+
+// Changed: AboutPage type for the about-page singleton object
+export interface AboutPage {
+  id: string
+  title: string
+  slug: string
+  metadata: {
+    heading: string
+    content?: string
+    hero_image?: CosmicImage
+  }
 }
 
 // Cosmic API response type
@@ -59,7 +80,12 @@ export interface CosmicSingleResponse<T> {
   object: T;
 }
 
-// Helper type guard
+// Type guard for error status
 export function hasStatus(error: unknown): error is { status: number } {
-  return typeof error === 'object' && error !== null && 'status' in error;
+  return (
+    typeof error === 'object' &&
+    error !== null &&
+    'status' in error &&
+    typeof (error as { status: unknown }).status === 'number'
+  )
 }
