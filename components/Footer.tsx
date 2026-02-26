@@ -82,17 +82,17 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Social Links */}
+          {/* Social Links - Changed: Updated to Cosmic's official social profiles */}
           <div>
             <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-3">
               Follow Us
             </h4>
             <div className="flex items-center gap-3">
               <a
-                href="https://twitter.com"
+                href="https://x.com/cosmicjs"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Follow us on X (Twitter)"
+                aria-label="Follow Cosmic on X (Twitter)"
                 className="text-gray-400 hover:text-gray-900 transition-colors"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -100,10 +100,10 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://github.com"
+                href="https://github.com/cosmicjs"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Follow us on GitHub"
+                aria-label="Follow Cosmic on GitHub"
                 className="text-gray-400 hover:text-gray-900 transition-colors"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -111,10 +111,10 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://youtube.com"
+                href="https://www.youtube.com/@cosmicjs"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Subscribe on YouTube"
+                aria-label="Subscribe to Cosmic on YouTube"
                 className="text-gray-400 hover:text-gray-900 transition-colors"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -122,10 +122,10 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/cosmicjs"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Connect on LinkedIn"
+                aria-label="Connect with Cosmic on LinkedIn"
                 className="text-gray-400 hover:text-gray-900 transition-colors"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
